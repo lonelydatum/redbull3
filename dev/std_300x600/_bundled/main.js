@@ -52,7 +52,7 @@ function beams_off(beam) {
 	});
 
 	var tlBeam = new TimelineMax();
-	arr.reverse().map(function (item) {
+	arr.map(function (item) {
 		tlBeam.to(item, .05, { opacity: 0 });
 	});
 	return tlBeam;

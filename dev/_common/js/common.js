@@ -52,7 +52,7 @@ function beams_off(beam){
 	})
 
 	const tlBeam = new TimelineMax()
-	arr.reverse().map(item=>{
+	arr.map(item=>{
 		tlBeam.to(item, .05, {opacity:0})
 	})
 	return tlBeam
