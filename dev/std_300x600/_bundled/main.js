@@ -28,20 +28,6 @@ function beams_on(beam) {
 	return tlBeam;
 }
 
-function beams_off(beam) {
-	var list = document.querySelectorAll(beam);
-	var arr = [];
-	list.forEach(function (item) {
-		arr.push(item);
-	});
-
-	var tlBeam = new TimelineMax();
-	arr.reverse().map(function (item) {
-		tlBeam.to(item, .02, { opacity: 0 });
-	});
-	return tlBeam;
-}
-
 function dots() {
 	var tlDots = new TimelineMax({ repeat: 6, repeatDelay: .3 });
 
@@ -58,6 +44,20 @@ function dots() {
 	return tlDots;
 }
 
+function beams_off(beam) {
+	var list = document.querySelectorAll(beam);
+	var arr = [];
+	list.forEach(function (item) {
+		arr.push(item);
+	});
+
+	var tlBeam = new TimelineMax();
+	arr.reverse().map(function (item) {
+		tlBeam.to(item, .05, { opacity: 0 });
+	});
+	return tlBeam;
+}
+
 exports.size = size;
 exports.tl = tl;
 exports.maskBunch = maskBunch;
@@ -71,8 +71,9 @@ exports.dots = dots;
 var _commonJsCommonJs = require('../../_common/js/common.js');
 
 function start() {
-	frame2();
+	beamsPlay();
 	_commonJsCommonJs.tl.add(frame1());
+
 	_commonJsCommonJs.tl.to(".beam", .3, { opacity: 0 });
 	_commonJsCommonJs.tl.add(frame3());
 }
@@ -85,11 +86,13 @@ function frame1() {
 	return tlF1;
 }
 
-function frame2() {
+function beamsPlay() {
 	var tlF2 = new TimelineMax({ repeat: 1 });
-	tlF2.set('.frame2', { opacity: 1 });
+	_commonJsCommonJs.tl.set('.frame2', { opacity: 1 });
 	tlF2.add((0, _commonJsCommonJs.beams_on)(".beam_a"));
-	tlF2.add((0, _commonJsCommonJs.beams_on)(".beam_b"));
+	tlF2.add("yellowIn");
+	tlF2.add((0, _commonJsCommonJs.beams_on)(".beam_b"), "yellowIn");
+	tlF2.add((0, _commonJsCommonJs.beams_off)(".beam_a"), "yellowIn");
 
 	return tlF2;
 }

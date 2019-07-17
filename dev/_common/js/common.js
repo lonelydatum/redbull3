@@ -24,19 +24,7 @@ function beams_on(beam){
 	return tlBeam
 }
 
-function beams_off(beam){	
-	const list = document.querySelectorAll(beam)
-	const arr = []
-	list.forEach(item=>{		
-		arr.push(item)
-	})
 
-	const tlBeam = new TimelineMax()
-	arr.reverse().map(item=>{
-		tlBeam.to(item, .02, {opacity:0})
-	})
-	return tlBeam
-}
 
 function dots(){
 	const tlDots = new TimelineMax({repeat:6, repeatDelay:.3})
@@ -54,5 +42,21 @@ function dots(){
 	return tlDots
 
 }
+
+
+function beams_off(beam){	
+	const list = document.querySelectorAll(beam)
+	const arr = []
+	list.forEach(item=>{		
+		arr.push(item)
+	})
+
+	const tlBeam = new TimelineMax()
+	arr.reverse().map(item=>{
+		tlBeam.to(item, .05, {opacity:0})
+	})
+	return tlBeam
+}
+
 
 export {size, tl, maskBunch, beams_on, beams_off, dots}

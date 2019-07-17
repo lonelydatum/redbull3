@@ -1,8 +1,10 @@
 import { tl, maskBunch, beams_on, beams_off, dots } from '../../_common/js/common.js'
 
 function start(){	
-	frame2()
+	beamsPlay()
 	tl.add(frame1())
+
+	
 	tl.to(".beam", .3, {opacity:0})
 	tl.add(frame3())
 }
@@ -15,11 +17,13 @@ function frame1(){
 	return tlF1
 }
 
-function frame2(){
+function beamsPlay(){
 	const tlF2 = new TimelineMax({repeat:1})
-	tlF2.set('.frame2', {opacity:1})	
+	tl.set('.frame2', {opacity:1})	
 	tlF2.add( beams_on(".beam_a") )
-	tlF2.add( beams_on(".beam_b") )	
+	tlF2.add("yellowIn")
+	tlF2.add( beams_on(".beam_b"), "yellowIn" )	
+	tlF2.add( beams_off(".beam_a"), "yellowIn" )	
 	
 	return tlF2	
 }
