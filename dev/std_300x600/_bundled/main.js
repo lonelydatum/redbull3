@@ -1,7 +1,7 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
-"use strict";
+'use strict';
 
-Object.defineProperty(exports, "__esModule", {
+Object.defineProperty(exports, '__esModule', {
 	value: true
 });
 var banner = document.getElementById('banner');
@@ -10,99 +10,89 @@ var size = { w: banner.offsetWidth, h: banner.offsetHeight };
 TweenLite.defaultEase = Power3.easeInOut;
 var tl = new TimelineMax();
 
-function maskBunch(list) {
+function maskBunch(list, clip) {
 	var tlMask = new TimelineMax();
 	list.map(function (item) {
-		tlMask.from(item, .35, { clip: "rect(0px 46px 1200px 46px)" });
+		tlMask.from(item, .35, { clip: clip });
 	});
-
 	return tlMask;
 }
 
-function beams_on(beam) {
-	var tlBeam = new TimelineMax();
-	var list = document.querySelectorAll(beam);
-	list.forEach(function (item) {
-		tlBeam.from(item, .05, { opacity: 0 });
-	});
-	return tlBeam;
-}
+var BEAM_TIME = .065;
 
-function dots() {
-	var tlDots = new TimelineMax({ repeat: 6, repeatDelay: .3 });
+function cascade(className) {
+	var repeat = arguments.length <= 1 || arguments[1] === undefined ? 4 : arguments[1];
 
-	var blues = document.querySelectorAll(".dot.blue");
-	blues.forEach(function (item) {
-		tlDots.from(item, .07, { opacity: 0 });
-	});
-
-	var reds = document.querySelectorAll(".dot.red");
-	reds.forEach(function (item) {
-		tlDots.from(item, .07, { opacity: 0 });
-	});
-
+	var tlDots = new TimelineMax({ repeat: repeat });
+	tlDots.add(cascade_on(className));
+	tlDots.add(cascade_off(className));
 	return tlDots;
 }
 
-function beams_off(beam) {
-	var list = document.querySelectorAll(beam);
-	var arr = [];
-	list.forEach(function (item) {
-		arr.push(item);
+function cascade_on(className) {
+	var tlDots = new TimelineMax();
+	var blues = document.querySelectorAll(className);
+	blues.forEach(function (item) {
+		tlDots.fromTo(item, BEAM_TIME, { opacity: 0 }, { opacity: 1 });
 	});
+	return tlDots;
+}
 
-	var tlBeam = new TimelineMax();
-	arr.map(function (item) {
-		tlBeam.to(item, .05, { opacity: 0 });
+function cascade_off(className) {
+	var tlDots = new TimelineMax();
+	var blues = document.querySelectorAll(className);
+	blues.forEach(function (item) {
+		tlDots.to(item, BEAM_TIME, { opacity: 0 });
 	});
-	return tlBeam;
+	return tlDots;
 }
 
 exports.size = size;
 exports.tl = tl;
 exports.maskBunch = maskBunch;
-exports.beams_on = beams_on;
-exports.beams_off = beams_off;
-exports.dots = dots;
+exports.cascade = cascade;
+exports.cascade_on = cascade_on;
 
 },{}],2:[function(require,module,exports){
 'use strict';
 
 var _commonJsCommonJs = require('../../_common/js/common.js');
 
+var clip = 'rect(0px 46px 1200px 46px)';
+
 function start() {
 	beamsPlay();
 	_commonJsCommonJs.tl.add(frame1());
 
-	_commonJsCommonJs.tl.to(".beam", .3, { opacity: 0 });
+	_commonJsCommonJs.tl.to(".frame2", .3, { opacity: 0 });
 	_commonJsCommonJs.tl.add(frame3());
 }
 
 function frame1() {
 	var tlF1 = new TimelineMax();
 	tlF1.set('.frame1', { opacity: 1 });
-	tlF1.add((0, _commonJsCommonJs.maskBunch)(['.t1a', '.t1b', '.t1c', '.t1d']));
+	tlF1.add((0, _commonJsCommonJs.maskBunch)(['.t1a', '.t1b', '.t1c', '.t1d'], clip));
 	tlF1.to('.t1', .35, { clip: 'rect(0px 46px 1200px 46px)' }, "+=2");
 	return tlF1;
 }
 
 function beamsPlay() {
-	var tlF2 = new TimelineMax({ repeat: 1 });
+	var tlF2 = new TimelineMax();
 	_commonJsCommonJs.tl.set('.frame2', { opacity: 1 });
-	tlF2.add((0, _commonJsCommonJs.beams_on)(".beam_a"));
-	tlF2.add("yellowIn");
-	tlF2.add((0, _commonJsCommonJs.beams_on)(".beam_b"), "yellowIn");
-	tlF2.add((0, _commonJsCommonJs.beams_off)(".beam_a"), "yellowIn");
-
+	tlF2.add((0, _commonJsCommonJs.cascade)(".beam_a", 5));
+	tlF2.add((0, _commonJsCommonJs.cascade)(".beam_b", 5), .4);
 	return tlF2;
 }
 
 function frame3() {
 	var tlF3 = new TimelineMax();
 	tlF3.set('.frame3', { opacity: 1 });
-	tlF3.add((0, _commonJsCommonJs.dots)());
+	tlF3.add((0, _commonJsCommonJs.cascade)(".dot.blue"));
+	tlF3.add((0, _commonJsCommonJs.cascade)(".dot.red"), .3);
+	tlF3.add((0, _commonJsCommonJs.cascade_on)(".dot.blue"));
+	tlF3.add((0, _commonJsCommonJs.cascade_on)(".dot.red"));
 
-	var mask1 = (0, _commonJsCommonJs.maskBunch)(['.t2a', '.t2b']);
+	var mask1 = (0, _commonJsCommonJs.maskBunch)(['.t2a', '.t2b'], clip);
 
 	tlF3.add('mask1', .8);
 	tlF3.add(mask1, 'mask1');
@@ -113,7 +103,7 @@ function frame3() {
 	tlF3.to('.t2', .35, { clip: 'rect(0px 46px 1200px 46px)' }, 'mask1_close');
 	tlF3.to('.line', .35, { width: 0 }, 'mask1_close');
 
-	var mask2 = (0, _commonJsCommonJs.maskBunch)(['.t3a', '.t3b', '.t3c']);
+	var mask2 = (0, _commonJsCommonJs.maskBunch)(['.t3a', '.t3b', '.t3c'], clip);
 	tlF3.add(mask2, 4.5);
 	return tlF3;
 }

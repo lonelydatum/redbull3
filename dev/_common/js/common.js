@@ -5,58 +5,50 @@ TweenLite.defaultEase = Power3.easeInOut
 const tl = new TimelineMax()
 
 
-function maskBunch(list){
+function maskBunch(list, clip){
 	const tlMask = new TimelineMax()
 	list.map(item=>{
-		tlMask.from(item, .35, {clip: `rect(0px 46px 1200px 46px)`})	
-	})	
-
+		tlMask.from(item, .35, {clip})	
+	})
 	return tlMask
 }
 
 
-function beams_on(beam){	
-	const tlBeam = new TimelineMax()
-	const list = document.querySelectorAll(beam)
-	list.forEach(item=>{		
-		tlBeam.from(item, .05, {opacity:0})
-	})
-	return tlBeam
-}
+const BEAM_TIME = .065
 
-
-
-function dots(){
-	const tlDots = new TimelineMax({repeat:6, repeatDelay:.3})
-	
-	const blues = document.querySelectorAll(".dot.blue")
-	blues.forEach(item=>{
-		tlDots.from(item, .07, {opacity:0})
-	})
-
-	const reds = document.querySelectorAll(".dot.red")
-	reds.forEach(item=>{
-		tlDots.from(item, .07, {opacity:0})
-	})
-
+function cascade(className, repeat=4){
+	const tlDots = new TimelineMax({repeat})
+	tlDots.add( cascade_on(className) )
+	tlDots.add( cascade_off(className) )
 	return tlDots
+}
 
+function cascade_on(className){
+	const tlDots = new TimelineMax()
+	const blues = document.querySelectorAll(className)
+	blues.forEach(item=>{
+		tlDots.fromTo(item, BEAM_TIME, {opacity:0}, {opacity:1})
+	})
+	return tlDots
+}
+
+function cascade_off(className){
+	const tlDots = new TimelineMax()
+	const blues = document.querySelectorAll(className)
+	blues.forEach(item=>{
+		tlDots.to(item, BEAM_TIME, {opacity:0})
+	})
+	return tlDots
 }
 
 
-function beams_off(beam){	
-	const list = document.querySelectorAll(beam)
-	const arr = []
-	list.forEach(item=>{		
-		arr.push(item)
-	})
 
-	const tlBeam = new TimelineMax()
-	arr.map(item=>{
-		tlBeam.to(item, .05, {opacity:0})
-	})
-	return tlBeam
-}
+export {size, tl, maskBunch, cascade, cascade_on}
 
 
-export {size, tl, maskBunch, beams_on, beams_off, dots}
+
+
+
+
+
+
