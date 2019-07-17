@@ -21,7 +21,6 @@ function beams_on(beam){
 	list.forEach(item=>{		
 		tlBeam.from(item, .05, {opacity:0})
 	})
-
 	return tlBeam
 }
 
@@ -30,22 +29,26 @@ function beams_off(beam){
 	const arr = []
 	list.forEach(item=>{		
 		arr.push(item)
-		
 	})
 
 	const tlBeam = new TimelineMax()
 	arr.reverse().map(item=>{
 		tlBeam.to(item, .02, {opacity:0})
 	})
-
 	return tlBeam
 }
 
 function dots(){
-	const tlDots = new TimelineMax({repeat:1})
-	const list = document.querySelectorAll(".dot")
-	list.forEach(item=>{
-		tlDots.from(item, .05, {opacity:0})
+	const tlDots = new TimelineMax({repeat:6, repeatDelay:.3})
+	
+	const blues = document.querySelectorAll(".dot.blue")
+	blues.forEach(item=>{
+		tlDots.from(item, .07, {opacity:0})
+	})
+
+	const reds = document.querySelectorAll(".dot.red")
+	reds.forEach(item=>{
+		tlDots.from(item, .07, {opacity:0})
 	})
 
 	return tlDots
