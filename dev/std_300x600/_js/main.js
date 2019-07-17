@@ -5,8 +5,6 @@ const clip = `rect(0px 46px 1200px 46px)`
 function start(){	
 	beamsPlay()
 	tl.add(frame1())
-
-	
 	tl.to(".frame2", .3, {opacity:0})
 	tl.add(frame3())
 }
@@ -23,7 +21,7 @@ function beamsPlay(){
 	const tlF2 = new TimelineMax()
 	tl.set('.frame2', {opacity:1})	
 	tlF2.add( cascade(".beam_a", 5) )
-	tlF2.add( cascade(".beam_b", 5), .4 )	
+	tlF2.add( cascade(".beam_b", 5), .7 )	
 	return tlF2	
 }
 
@@ -33,7 +31,7 @@ function frame3(){
 	const tlF3 = new TimelineMax()
 	tlF3.set('.frame3', {opacity:1})
 	tlF3.add( cascade(".dot.blue") )
-	tlF3.add( cascade(".dot.red"), .3 )
+	tlF3.add( cascade(".dot.red"), .35 )
 	tlF3.add( cascade_on(".dot.blue") )
 	tlF3.add( cascade_on(".dot.red") )
 	

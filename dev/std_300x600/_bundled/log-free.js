@@ -63,7 +63,6 @@ var clip = 'rect(0px 46px 1200px 46px)';
 function start() {
 	beamsPlay();
 	_commonJsCommonJs.tl.add(frame1());
-
 	_commonJsCommonJs.tl.to(".frame2", .3, { opacity: 0 });
 	_commonJsCommonJs.tl.add(frame3());
 }
@@ -80,7 +79,7 @@ function beamsPlay() {
 	var tlF2 = new TimelineMax();
 	_commonJsCommonJs.tl.set('.frame2', { opacity: 1 });
 	tlF2.add((0, _commonJsCommonJs.cascade)(".beam_a", 5));
-	tlF2.add((0, _commonJsCommonJs.cascade)(".beam_b", 5), .4);
+	tlF2.add((0, _commonJsCommonJs.cascade)(".beam_b", 5), .7);
 	return tlF2;
 }
 
@@ -88,7 +87,7 @@ function frame3() {
 	var tlF3 = new TimelineMax();
 	tlF3.set('.frame3', { opacity: 1 });
 	tlF3.add((0, _commonJsCommonJs.cascade)(".dot.blue"));
-	tlF3.add((0, _commonJsCommonJs.cascade)(".dot.red"), .3);
+	tlF3.add((0, _commonJsCommonJs.cascade)(".dot.red"), .35);
 	tlF3.add((0, _commonJsCommonJs.cascade_on)(".dot.blue"));
 	tlF3.add((0, _commonJsCommonJs.cascade_on)(".dot.red"));
 
