@@ -11,9 +11,11 @@ TweenLite.defaultEase = Power3.easeInOut;
 var tl = new TimelineMax();
 
 function maskBunch(list, clip) {
+	var time = arguments.length <= 2 || arguments[2] === undefined ? .35 : arguments[2];
+
 	var tlMask = new TimelineMax();
 	list.map(function (item) {
-		tlMask.from(item, .35, { clip: clip });
+		tlMask.from(item, time, { clip: clip });
 	});
 	return tlMask;
 }

@@ -5,10 +5,10 @@ TweenLite.defaultEase = Power3.easeInOut
 const tl = new TimelineMax()
 
 
-function maskBunch(list, clip){
+function maskBunch(list, clip, time=.35){
 	const tlMask = new TimelineMax()
 	list.map(item=>{
-		tlMask.from(item, .35, {clip})	
+		tlMask.from(item, time, {clip})	
 	})
 	return tlMask
 }

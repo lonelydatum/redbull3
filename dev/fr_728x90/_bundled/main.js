@@ -60,52 +60,52 @@ exports.cascade_on = cascade_on;
 
 var _commonJsCommonJs = require('../../_common/js/common.js');
 
-var clip = 'rect(0px 46px 1200px 46px)';
+var clip = 'rect(0px 250px 180px 250px)';
 
 function start() {
 	beamsPlay();
 	_commonJsCommonJs.tl.add(frame1());
-	_commonJsCommonJs.tl.to(".frame2", .3, { opacity: 0 });
-	_commonJsCommonJs.tl.add(frame3());
+	_commonJsCommonJs.tl.add(frame2());
+	// tl.to(".frame2", .3, {opacity:0})
+	// tl.add(frame3())
 }
 
 function frame1() {
 	var tlF1 = new TimelineMax();
 	tlF1.set('.frame1', { opacity: 1 });
-	tlF1.add((0, _commonJsCommonJs.maskBunch)(['.t1a', '.t1b', '.t1c', '.t1d'], clip));
-	tlF1.to('.t1', .35, { clip: 'rect(0px 46px 1200px 46px)' }, "+=2");
+	tlF1.add((0, _commonJsCommonJs.maskBunch)(['.t1a', '.t1b'], clip, .7));
+	tlF1.to('.t1', .35, { clip: clip }, "+=2");
 	return tlF1;
 }
 
 function beamsPlay() {
 	var tlF2 = new TimelineMax();
 	_commonJsCommonJs.tl.set('.frame2', { opacity: 1 });
-	tlF2.add((0, _commonJsCommonJs.cascade)(".beam_a", 5));
-	tlF2.add((0, _commonJsCommonJs.cascade)(".beam_b", 5), .7);
+	tlF2.add((0, _commonJsCommonJs.cascade)(".beam_a", 4));
+	tlF2.add((0, _commonJsCommonJs.cascade)(".beam_b", 4), .5);
+
+	tlF2.add((0, _commonJsCommonJs.cascade_on)(".beam_a"));
+	tlF2.add((0, _commonJsCommonJs.cascade_on)(".beam_b"));
 	return tlF2;
 }
 
-function frame3() {
+function frame2() {
 	var tlF3 = new TimelineMax();
-	tlF3.set('.frame3', { opacity: 1 });
-	tlF3.add((0, _commonJsCommonJs.cascade)(".dot.blue"));
-	tlF3.add((0, _commonJsCommonJs.cascade)(".dot.red"), .35);
-	tlF3.add((0, _commonJsCommonJs.cascade_on)(".dot.blue"));
-	tlF3.add((0, _commonJsCommonJs.cascade_on)(".dot.red"));
+	tlF3.set('.frame2', { opacity: 1 });
 
-	var mask1 = (0, _commonJsCommonJs.maskBunch)(['.t2a', '.t2b'], clip);
+	var mask1 = (0, _commonJsCommonJs.maskBunch)(['.t2a', '.t2b'], clip, .5);
 
-	tlF3.add('mask1', .8);
 	tlF3.add(mask1, 'mask1');
 
-	tlF3.from('.line', .35, { width: 0 }, 'mask1+=.7');
+	tlF3.from('.line', .35, { width: 0 }, 'mask1+=.8');
 
-	tlF3.add('mask1_close', 4);
-	tlF3.to('.t2', .35, { clip: 'rect(0px 46px 1200px 46px)' }, 'mask1_close');
-	tlF3.to('.line', .35, { width: 0 }, 'mask1_close');
+	tlF3.add('mask1_close', 3.2);
+	tlF3.to('.t2', .5, { clip: 'rect(0px 46px 1200px 46px)' }, 'mask1_close');
+	tlF3.to('.line', .5, { width: 0 }, 'mask1_close');
 
-	var mask2 = (0, _commonJsCommonJs.maskBunch)(['.t3a', '.t3b', '.t3c'], clip);
-	tlF3.add(mask2, 4.5);
+	var mask2 = (0, _commonJsCommonJs.maskBunch)(['.t3a'], clip, .7);
+	tlF3.add(mask2, 3.8);
+
 	return tlF3;
 }
 
