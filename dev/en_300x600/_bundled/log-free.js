@@ -80,7 +80,7 @@ function frame1() {
 	var tlF1 = new TimelineMax();
 	tlF1.set('.frame1', { opacity: 1 });
 	tlF1.add((0, _commonJsCommonJs.maskBunch)(['.t1a', '.t1b', '.t1c', '.t1d'], clip));
-	tlF1.to('.t1', .35, { clip: "rect(0px 46px 1200px 46px)" }, "+=2");
+	tlF1.to('.t1', .35, { clip: "rect(0px 46px 1200px 46px)" }, "+=1.2");
 	return tlF1;
 }
 
@@ -119,7 +119,7 @@ function frame3() {
 
 	tlF3.from('.line', .35, { width: 0 }, 'mask1+=.7');
 
-	tlF3.add('mask1_close', "+=3");
+	tlF3.add('mask1_close', "+=2");
 	tlF3.to('.t2', .35, { clip: "rect(0px 46px 1200px 46px)" }, 'mask1_close');
 	tlF3.to('.line', .35, { width: 0 }, 'mask1_close');
 
