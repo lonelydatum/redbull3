@@ -14,9 +14,10 @@ function maskBunch(list, clip, time=.35){
 }
 
 
-const BEAM_TIME = .065
+const BEAM_TIME = .05
 
 function cascade(className, repeat=4){
+	
 	const tlDots = new TimelineMax({repeat})
 	tlDots.add( cascade_on(className) )
 	tlDots.add( cascade_off(className) )

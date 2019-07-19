@@ -20,7 +20,7 @@ function maskBunch(list, clip) {
 	return tlMask;
 }
 
-var BEAM_TIME = .065;
+var BEAM_TIME = .05;
 
 function cascade(className) {
 	var repeat = arguments.length <= 1 || arguments[1] === undefined ? 4 : arguments[1];
@@ -103,8 +103,7 @@ function frame2() {
 	tlF3.to('.t2', .5, { clip: 'rect(0px 46px 1200px 46px)' }, 'mask1_close');
 	tlF3.to('.line', .5, { width: 0 }, 'mask1_close');
 
-	var mask2 = (0, _commonJsCommonJs.maskBunch)(['.t3a'], clip, .7);
-	tlF3.add(mask2, 3.8);
+	tlF3.from('.cta', .4, { opacity: 0 }, 4);
 
 	return tlF3;
 }

@@ -50,8 +50,9 @@ function frame2(){
 	tlF3.to('.line', .5, {width:0}, 'mask1_close')
 
 
-	const mask2 = maskBunch( ['.t3a'], clip, .7 )
-	tlF3.add(mask2, 3.8)
+	
+	
+	tlF3.from('.cta', .4, {opacity:0}, 4)
 
 
 	return tlF3
