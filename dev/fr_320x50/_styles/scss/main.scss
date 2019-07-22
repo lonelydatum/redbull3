@@ -1,0 +1,47 @@
+
+
+@import '../../../_common/styles/common.scss';
+
+.framer{
+	// opacity: .3
+}
+.beamHolder{
+	@include pos-scale(340, -298, 1.1);
+}
+
+.frame3{
+	// opacity: 1;
+}
+
+.frame1{
+	// opacity: 1;
+}
+
+.frame2 {
+	// opacity: 1;
+	.beam{
+		@include pos(0, 0);
+	}
+	
+	
+}
+
+.t1, .t2, .t3{
+	clip: rect(0px 450px 100px 0px);
+}
+
+
+.line{
+		width: 167px;
+		height: 3px;
+		background-color: #b51d39;
+		@include pos(138, 72);
+	}
+
+#banner{
+	font-size: 20px;
+	color: #333;
+	width: 320px;
+	height: 50px;
+}
+
