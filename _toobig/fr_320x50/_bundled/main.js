@@ -20,7 +20,7 @@ function maskBunch(list, clip) {
 	return tlMask;
 }
 
-var BEAM_TIME = .05;
+var BEAM_TIME = .036;
 
 function cascade(className) {
 	var repeat = arguments.length <= 1 || arguments[1] === undefined ? 4 : arguments[1];
@@ -75,7 +75,7 @@ function frame1() {
 	return tlF1;
 }
 
-start();
+// start()
 
 module.exports = {};
 

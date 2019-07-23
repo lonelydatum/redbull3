@@ -14,7 +14,7 @@ function maskBunch(list, clip, time=.35){
 }
 
 
-const BEAM_TIME = .05
+const BEAM_TIME = .036
 
 function cascade(className, repeat=4){
 	
