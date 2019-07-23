@@ -20,7 +20,7 @@ function maskBunch(list, clip) {
 	return tlMask;
 }
 
-var BEAM_TIME = .036;
+var BEAM_TIME = .04;
 
 function cascade(className) {
 	var repeat = arguments.length <= 1 || arguments[1] === undefined ? 4 : arguments[1];
@@ -82,7 +82,7 @@ function beamsPlay() {
 	var tlF2 = new TimelineMax();
 	_commonJsCommonJs.tl.set('.frame2', { opacity: 1 });
 	tlF2.add((0, _commonJsCommonJs.cascade)(".beam_a", 4));
-	tlF2.add((0, _commonJsCommonJs.cascade)(".beam_b", 4), .5);
+	tlF2.add((0, _commonJsCommonJs.cascade)(".beam_b", 4), .3);
 
 	tlF2.add((0, _commonJsCommonJs.cascade_on)(".beam_a"));
 	tlF2.add((0, _commonJsCommonJs.cascade_on)(".beam_b"));

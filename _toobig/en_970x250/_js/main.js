@@ -22,7 +22,7 @@ function beamsPlay(){
 	const tlF2 = new TimelineMax()
 	tl.set('.frame2', {opacity:1})	
 	tlF2.add( cascade(".beam_a", 4) )
-	tlF2.add( cascade(".beam_b", 4), .5 )	
+	tlF2.add( cascade(".beam_b", 4), .3 )	
 
 	tlF2.add( cascade_on(".beam_a") )
 	tlF2.add( cascade_on(".beam_b") )
