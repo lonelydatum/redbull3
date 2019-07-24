@@ -75,7 +75,7 @@ function frame1() {
 	return tlF1;
 }
 
-// start()
+start();
 
 module.exports = {};
 

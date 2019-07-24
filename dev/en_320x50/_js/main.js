@@ -17,7 +17,7 @@ function frame1(){
 }
 
 
-// start()
+start()
 
 module.exports = {};
 
