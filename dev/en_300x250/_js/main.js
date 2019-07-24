@@ -23,7 +23,9 @@ function start(){
 function frame1(){
 	const tlF1 = new TimelineMax()
 	tlF1.set('.frame1', {opacity:1})
-	tlF1.to('.t1', .3, {opacity:0}, "+=2.8")
+	// tlF1.to('.t1', .3, {opacity:0}, "+=2.8")
+	tlF1.add( maskBunch( ['.t1a', '.t1b', '.t1c', '.t1d'], clip, .4 ) )
+	tlF1.to('.t1', .35, {clip: clip}, "+=1.2")
 	return tlF1
 }
 
