@@ -65,14 +65,51 @@ var clip = 'rect(0px 20px 100px 20px)';
 function start() {
 
 	_commonJsCommonJs.tl.add(frame1());
+	_commonJsCommonJs.tl.add(beamsPlay());
+
+	_commonJsCommonJs.tl.add(frame2(), "-=.5");
+
+	_commonJsCommonJs.tl.add('endBeam', "-=.6");
+	_commonJsCommonJs.tl.add((0, _commonJsCommonJs.cascade_on)(".beam_a"), "endBeam");
+	_commonJsCommonJs.tl.add((0, _commonJsCommonJs.cascade_on)(".beam_b"), "endBeam+=.3");
 }
 
 function frame1() {
 	var tlF1 = new TimelineMax();
 	tlF1.set('.frame1', { opacity: 1 });
 	tlF1.add((0, _commonJsCommonJs.maskBunch)(['.t1a', '.t1b'], clip, .5));
-	// tlF1.to('.t1', .35, {clip: clip}, "+=1.2")
+	tlF1.to('.t1', .35, { clip: clip }, "+=1.2");
 	return tlF1;
+}
+
+function beamsPlay() {
+	var tlF2 = new TimelineMax();
+	_commonJsCommonJs.tl.set('.frame2', { opacity: 1 });
+	tlF2.add((0, _commonJsCommonJs.cascade)(".beam_a", 0));
+	tlF2.add((0, _commonJsCommonJs.cascade)(".beam_b", 0), .5);
+
+	// tlF2.add( cascade_on(".beam_a") )
+	// tlF2.add( cascade_on(".beam_b") )
+	return tlF2;
+}
+
+function frame2() {
+	var tlF3 = new TimelineMax();
+	tlF3.set('.frame2', { opacity: 1 });
+
+	var mask1 = (0, _commonJsCommonJs.maskBunch)(['.t2a', '.t2b'], clip, .5);
+
+	tlF3.add(mask1, 'mask1');
+
+	tlF3.from('.line', .35, { width: 0 }, 'mask1+=.8');
+
+	tlF3.add('mask1_close', 2.2);
+	tlF3.to('.t2', .5, { clip: clip }, 'mask1_close');
+	tlF3.to('.line', .4, { width: 0 }, 'mask1_close');
+
+	tlF3.from('.cta', .4, { opacity: 0 }, "+=.3");
+
+	return tlF3;
 }
 
 start();
