@@ -6,8 +6,6 @@ function start(){
 	beamsPlay()
 	tl.add(frame1())
 	tl.add(frame2())
-	// tl.to(".frame2", .3, {opacity:0})
-	// tl.add(frame3())
 }
 
 function frame1(){

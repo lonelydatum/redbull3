@@ -56,22 +56,51 @@ exports.cascade = cascade;
 exports.cascade_on = cascade_on;
 
 },{}],2:[function(require,module,exports){
-'use strict';
+"use strict";
 
 var _commonJsCommonJs = require('../../_common/js/common.js');
 
-var clip = 'rect(0px 20px 100px 20px)';
+var clip = "rect(0px 20px 100px 20px)";
+
+// function start(){	
+
+// 	tl.add(frame1())
+// 	tl.add(beamsPlay())
+
+// 	tl.add(frame2(), "-=.5")
+
+// 	tl.add('endBeam', "-=.6")
+// 	tl.add( cascade_on(".beam_a"), "endBeam" )
+// 	tl.add( cascade_on(".beam_b"), "endBeam+=.3" )
+
+// }
+
+// function beamsPlay(){
+// 	const tlF2 = new TimelineMax()
+// 	tl.set('.frame2', {opacity:1})	
+// 	tlF2.add( cascade(".beam_a", 0) )
+// 	tlF2.add( cascade(".beam_b", 0), .5 )	
+
+// 	// tlF2.add( cascade_on(".beam_a") )
+// 	// tlF2.add( cascade_on(".beam_b") )
+// 	return tlF2	
+// }
 
 function start() {
-
+	beamsPlay();
 	_commonJsCommonJs.tl.add(frame1());
-	_commonJsCommonJs.tl.add(beamsPlay());
+	_commonJsCommonJs.tl.add(frame2());
+	_commonJsCommonJs.tl.add((0, _commonJsCommonJs.cascade_on)(".beam_aa"));
+	_commonJsCommonJs.tl.add((0, _commonJsCommonJs.cascade_on)(".beam_bb"));
+}
 
-	_commonJsCommonJs.tl.add(frame2(), "-=.5");
+function beamsPlay() {
+	var tlF2 = new TimelineMax();
+	_commonJsCommonJs.tl.set('.frame2', { opacity: 1 });
+	tlF2.add((0, _commonJsCommonJs.cascade)(".beam_a", 4));
+	tlF2.add((0, _commonJsCommonJs.cascade)(".beam_b", 4), .3);
 
-	_commonJsCommonJs.tl.add('endBeam', "-=.6");
-	_commonJsCommonJs.tl.add((0, _commonJsCommonJs.cascade_on)(".beam_a"), "endBeam");
-	_commonJsCommonJs.tl.add((0, _commonJsCommonJs.cascade_on)(".beam_b"), "endBeam+=.3");
+	return tlF2;
 }
 
 function frame1() {
@@ -80,17 +109,6 @@ function frame1() {
 	tlF1.add((0, _commonJsCommonJs.maskBunch)(['.t1a', '.t1b'], clip, .5));
 	tlF1.to('.t1', .35, { clip: clip }, "+=1.2");
 	return tlF1;
-}
-
-function beamsPlay() {
-	var tlF2 = new TimelineMax();
-	_commonJsCommonJs.tl.set('.frame2', { opacity: 1 });
-	tlF2.add((0, _commonJsCommonJs.cascade)(".beam_a", 0));
-	tlF2.add((0, _commonJsCommonJs.cascade)(".beam_b", 0), .5);
-
-	// tlF2.add( cascade_on(".beam_a") )
-	// tlF2.add( cascade_on(".beam_b") )
-	return tlF2;
 }
 
 function frame2() {

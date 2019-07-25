@@ -2,17 +2,49 @@ import { tl, maskBunch,  cascade, cascade_on } from '../../_common/js/common.js'
 
 const clip = `rect(0px 20px 100px 20px)`
 
-function start(){	
+// function start(){	
 	
-	tl.add(frame1())
-	tl.add(beamsPlay())
+// 	tl.add(frame1())
+// 	tl.add(beamsPlay())
 	
-	tl.add(frame2(), "-=.5")
+// 	tl.add(frame2(), "-=.5")
 
-	tl.add('endBeam', "-=.6")
-	tl.add( cascade_on(".beam_a"), "endBeam" )
-	tl.add( cascade_on(".beam_b"), "endBeam+=.3" )
+// 	tl.add('endBeam', "-=.6")
+// 	tl.add( cascade_on(".beam_a"), "endBeam" )
+// 	tl.add( cascade_on(".beam_b"), "endBeam+=.3" )
 	
+// }
+
+// function beamsPlay(){
+// 	const tlF2 = new TimelineMax()
+// 	tl.set('.frame2', {opacity:1})	
+// 	tlF2.add( cascade(".beam_a", 0) )
+// 	tlF2.add( cascade(".beam_b", 0), .5 )	
+
+// 	// tlF2.add( cascade_on(".beam_a") )
+// 	// tlF2.add( cascade_on(".beam_b") )
+// 	return tlF2	
+// }
+
+
+
+function start(){	
+	beamsPlay()
+	tl.add(frame1())
+	tl.add(frame2())
+}
+
+
+
+function beamsPlay(){
+	const tlF2 = new TimelineMax()
+	tl.set('.frame2', {opacity:1})	
+	tlF2.add( cascade(".beam_a", 4) )
+	tlF2.add( cascade(".beam_b", 4), .3 )	
+
+	tlF2.add( cascade_on(".beam_a") )
+	tlF2.add( cascade_on(".beam_b") )
+	return tlF2	
 }
 
 function frame1(){
@@ -24,16 +56,6 @@ function frame1(){
 }
 
 
-function beamsPlay(){
-	const tlF2 = new TimelineMax()
-	tl.set('.frame2', {opacity:1})	
-	tlF2.add( cascade(".beam_a", 0) )
-	tlF2.add( cascade(".beam_b", 0), .5 )	
-
-	// tlF2.add( cascade_on(".beam_a") )
-	// tlF2.add( cascade_on(".beam_b") )
-	return tlF2	
-}
 
 
 
