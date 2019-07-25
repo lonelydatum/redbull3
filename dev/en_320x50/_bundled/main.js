@@ -54,6 +54,7 @@ exports.tl = tl;
 exports.maskBunch = maskBunch;
 exports.cascade = cascade;
 exports.cascade_on = cascade_on;
+exports.cascade_off = cascade_off;
 
 },{}],2:[function(require,module,exports){
 'use strict';

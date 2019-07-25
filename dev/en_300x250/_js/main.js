@@ -1,4 +1,4 @@
-import { tl, maskBunch,  cascade, cascade_on } from '../../_common/js/common.js'
+import { maskBunch,  cascade, cascade_on, cascade_off } from '../../_common/js/common.js'
 
 const clip = `rect(0px 10px 500px 10px)`
 
@@ -28,12 +28,31 @@ const clip = `rect(0px 10px 500px 10px)`
 
 
 function start(){	
-	beamsPlay()
-	tl.add(frame1())
-	tl.add(frame2())
+	// beamsPlay()
+	const tl = new TimelineMax()
 
-	tl.add( cascade_on(".beam_aa") )
-	tl.add( cascade_on(".beam_bb") )
+	tl.set('.beam_aa', {opacity:1})
+	tl.set('.beam_bb', {opacity:0})
+
+
+	tl.add(frame1())
+	tl.add( cascade_on(".beam_bb") )	
+
+	tl.add( cascade_off(".beam_bb") )	
+
+
+	tl.add(frame2())
+	tl.add( cascade_on(".beam_bb") )	
+	
+	
+
+	// tl.add( cascade(".beam_aa", 4) )
+	// tl.add( cascade(".beam_bb", 4), .3 )	
+
+	
+
+
+	
 }
 
 
@@ -48,7 +67,7 @@ function frame1(){
 
 function beamsPlay(){
 	const tlF2 = new TimelineMax()
-	tl.set('.frame2', {opacity:1})	
+	tlF2.set('.frame2', {opacity:1})	
 	tlF2.add( cascade(".beam_a", 4) )
 	tlF2.add( cascade(".beam_b", 4), .3 )	
 

@@ -54,13 +54,14 @@ exports.tl = tl;
 exports.maskBunch = maskBunch;
 exports.cascade = cascade;
 exports.cascade_on = cascade_on;
+exports.cascade_off = cascade_off;
 
 },{}],2:[function(require,module,exports){
-"use strict";
+'use strict';
 
 var _commonJsCommonJs = require('../../_common/js/common.js');
 
-var clip = "rect(0px 10px 500px 10px)";
+var clip = 'rect(0px 10px 500px 10px)';
 
 // function start(){	
 
@@ -84,12 +85,22 @@ var clip = "rect(0px 10px 500px 10px)";
 // }
 
 function start() {
-	beamsPlay();
-	_commonJsCommonJs.tl.add(frame1());
-	_commonJsCommonJs.tl.add(frame2());
+	// beamsPlay()
+	var tl = new TimelineMax();
 
-	_commonJsCommonJs.tl.add((0, _commonJsCommonJs.cascade_on)(".beam_aa"));
-	_commonJsCommonJs.tl.add((0, _commonJsCommonJs.cascade_on)(".beam_bb"));
+	tl.set('.beam_aa', { opacity: 1 });
+	tl.set('.beam_bb', { opacity: 0 });
+
+	tl.add(frame1());
+	tl.add((0, _commonJsCommonJs.cascade_on)(".beam_bb"));
+
+	tl.add((0, _commonJsCommonJs.cascade_off)(".beam_bb"));
+
+	tl.add(frame2());
+	tl.add((0, _commonJsCommonJs.cascade_on)(".beam_bb"));
+
+	// tl.add( cascade(".beam_aa", 4) )
+	// tl.add( cascade(".beam_bb", 4), .3 )	
 }
 
 function frame1() {
@@ -103,7 +114,7 @@ function frame1() {
 
 function beamsPlay() {
 	var tlF2 = new TimelineMax();
-	_commonJsCommonJs.tl.set('.frame2', { opacity: 1 });
+	tlF2.set('.frame2', { opacity: 1 });
 	tlF2.add((0, _commonJsCommonJs.cascade)(".beam_a", 4));
 	tlF2.add((0, _commonJsCommonJs.cascade)(".beam_b", 4), .3);
 

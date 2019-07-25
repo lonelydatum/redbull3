@@ -44,7 +44,7 @@ function cascade_off(className){
 
 
 
-export {size, tl, maskBunch, cascade, cascade_on}
+export {size, tl, maskBunch, cascade, cascade_on, cascade_off}
 
 
 
