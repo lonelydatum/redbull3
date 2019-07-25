@@ -31,6 +31,9 @@ function start(){
 	beamsPlay()
 	tl.add(frame1())
 	tl.add(frame2())
+
+	tl.add( cascade_on(".beam_aa") )
+	tl.add( cascade_on(".beam_bb") )
 }
 
 
@@ -49,8 +52,8 @@ function beamsPlay(){
 	tlF2.add( cascade(".beam_a", 4) )
 	tlF2.add( cascade(".beam_b", 4), .3 )	
 
-	tlF2.add( cascade_on(".beam_a") )
-	tlF2.add( cascade_on(".beam_b") )
+	// tlF2.add( cascade_on(".beam_a") )
+	// tlF2.add( cascade_on(".beam_b") )
 	return tlF2	
 }
 

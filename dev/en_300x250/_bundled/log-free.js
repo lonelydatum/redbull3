@@ -56,11 +56,11 @@ exports.cascade = cascade;
 exports.cascade_on = cascade_on;
 
 },{}],2:[function(require,module,exports){
-'use strict';
+"use strict";
 
 var _commonJsCommonJs = require('../../_common/js/common.js');
 
-var clip = 'rect(0px 10px 500px 10px)';
+var clip = "rect(0px 10px 500px 10px)";
 
 // function start(){	
 
@@ -87,6 +87,9 @@ function start() {
 	beamsPlay();
 	_commonJsCommonJs.tl.add(frame1());
 	_commonJsCommonJs.tl.add(frame2());
+
+	_commonJsCommonJs.tl.add((0, _commonJsCommonJs.cascade_on)(".beam_aa"));
+	_commonJsCommonJs.tl.add((0, _commonJsCommonJs.cascade_on)(".beam_bb"));
 }
 
 function frame1() {
@@ -104,8 +107,8 @@ function beamsPlay() {
 	tlF2.add((0, _commonJsCommonJs.cascade)(".beam_a", 4));
 	tlF2.add((0, _commonJsCommonJs.cascade)(".beam_b", 4), .3);
 
-	tlF2.add((0, _commonJsCommonJs.cascade_on)(".beam_a"));
-	tlF2.add((0, _commonJsCommonJs.cascade_on)(".beam_b"));
+	// tlF2.add( cascade_on(".beam_a") )
+	// tlF2.add( cascade_on(".beam_b") )
 	return tlF2;
 }
 
