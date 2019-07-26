@@ -27,32 +27,30 @@ const clip = `rect(0px 10px 500px 10px)`
 
 
 
+function beamsPlay(){
+	const tlF2 = new TimelineMax()
+	// tl.set('.frame2', {opacity:1})	
+	tlF2.add( cascade(".beam_aa", 1) )
+	tlF2.add( cascade(".beam_bb", 1), .5 )	
+	return tlF2	
+}
+
+
+
 function start(){	
 	// beamsPlay()
 	const tl = new TimelineMax()
-
-	tl.set('.beam_aa', {opacity:1})
-	tl.set('.beam_bb', {opacity:0})
-
-
 	tl.add(frame1())
-	tl.add( cascade_on(".beam_bb") )	
-
-	tl.add( cascade_off(".beam_bb") )	
-
-
 	tl.add(frame2())
-	tl.add( cascade_on(".beam_bb") )	
+	// tl.add( beamsPlay() )
 	
-	
+	tl.add( "beam1", "-=.6" )	
+	tl.add( cascade(".beam_aa", 0), "beam1" )		
+	tl.add( cascade(".beam_bb", 0), "beam1+=.3" )		
 
-	// tl.add( cascade(".beam_aa", 4) )
-	// tl.add( cascade(".beam_bb", 4), .3 )	
-
-	
-
-
-	
+	tl.add( "beam2", "-=.3" )	
+	tl.add( cascade_on(".beam_aa", 1), "beam2" )	
+	tl.add( cascade_on(".beam_bb", 1), "beam2+=.3" )		
 }
 
 
