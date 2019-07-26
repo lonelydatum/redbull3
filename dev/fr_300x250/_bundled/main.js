@@ -57,56 +57,58 @@ exports.cascade_on = cascade_on;
 exports.cascade_off = cascade_off;
 
 },{}],2:[function(require,module,exports){
-"use strict";
+'use strict';
 
 var _commonJsCommonJs = require('../../_common/js/common.js');
 
-var clip = "rect(0px 10px 500px 10px)";
+var clip = 'rect(0px 10px 500px 10px)';
 
-// function start(){	
+function start() {
 
-// 	tl.add(frame1())
-// 	tl.add(beamsPlay())
-// 	tl.add(frame2(), '-=.5')
+	_commonJsCommonJs.tl.add(frame1());
+	_commonJsCommonJs.tl.add('endBeam1', "-=.2");
+	_commonJsCommonJs.tl.add((0, _commonJsCommonJs.cascade)(".beam_aa", 0), "endBeam1");
+	_commonJsCommonJs.tl.add((0, _commonJsCommonJs.cascade)(".beam_bb", 0), "endBeam1+=.3");
+	_commonJsCommonJs.tl.add(frame2(), '-=.5');
 
-// 	tl.add('endBeam', "-=.6")
-// 	tl.add( cascade_on(".beam_a"), "endBeam" )
-// 	tl.add( cascade_on(".beam_b"), "endBeam+=.3" )
-// 	// tl.to(".frame2", .3, {opacity:0})
+	_commonJsCommonJs.tl.add('endBeam2', "-=.6");
+	_commonJsCommonJs.tl.add((0, _commonJsCommonJs.cascade)(".beam_aa", 0), "endBeam2");
+	_commonJsCommonJs.tl.add((0, _commonJsCommonJs.cascade)(".beam_bb", 0), "endBeam2+=.3");
 
-// }
+	_commonJsCommonJs.tl.add('endBeam3');
+	_commonJsCommonJs.tl.add((0, _commonJsCommonJs.cascade_on)(".beam_aa", 0), "endBeam3");
+	_commonJsCommonJs.tl.add((0, _commonJsCommonJs.cascade_on)(".beam_bb", 0), "endBeam3+=.3");
 
-// function beamsPlay(){
-// 	const tlF2 = new TimelineMax()
-// 	tl.set('.frame2', {opacity:1})	
-// 	tlF2.add( cascade(".beam_a", 0) )
-// 	tlF2.add( cascade(".beam_b", 0), .5 )	
-// 	return tlF2	
-// }
+	// tl.to(".frame2", .3, {opacity:0})
+}
 
 function beamsPlay() {
 	var tlF2 = new TimelineMax();
-	// tl.set('.frame2', {opacity:1})	
-	tlF2.add((0, _commonJsCommonJs.cascade)(".beam_aa", 1));
-	tlF2.add((0, _commonJsCommonJs.cascade)(".beam_bb", 1), .5);
+	_commonJsCommonJs.tl.set('.frame2', { opacity: 1 });
+	tlF2.add((0, _commonJsCommonJs.cascade)(".beam_aa", 0));
+	tlF2.add((0, _commonJsCommonJs.cascade)(".beam_bb", 0), .5);
 	return tlF2;
 }
 
-function start() {
-	// beamsPlay()
-	var tl = new TimelineMax();
-	tl.add(frame1());
-	tl.add(frame2());
-	// tl.add( beamsPlay() )
+// function start(){	
+// 	// beamsPlay()
+// 	const tl = new TimelineMax()
 
-	tl.add("beam1", "-=.6");
-	tl.add((0, _commonJsCommonJs.cascade)(".beam_aa", 0), "beam1");
-	tl.add((0, _commonJsCommonJs.cascade)(".beam_bb", 0), "beam1+=.3");
+// 	tl.set('.beam_aa', {opacity:1})
+// 	tl.set('.beam_bb', {opacity:0})
 
-	tl.add("beam2", "-=.3");
-	tl.add((0, _commonJsCommonJs.cascade_on)(".beam_aa", 1), "beam2");
-	tl.add((0, _commonJsCommonJs.cascade_on)(".beam_bb", 1), "beam2+=.3");
-}
+// 	tl.add(frame1())
+// 	tl.add( cascade_on(".beam_bb") )	
+
+// 	tl.add( cascade_off(".beam_bb") )	
+
+// 	tl.add(frame2())
+// 	tl.add( cascade_on(".beam_bb") )	
+
+// 	// tl.add( cascade(".beam_aa", 4) )
+// 	// tl.add( cascade(".beam_bb", 4), .3 )	
+
+// }
 
 function frame1() {
 	var tlF1 = new TimelineMax();

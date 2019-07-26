@@ -1,57 +1,68 @@
-import { maskBunch,  cascade, cascade_on, cascade_off } from '../../_common/js/common.js'
+import { maskBunch,  cascade, cascade_on, cascade_off, tl } from '../../_common/js/common.js'
 
 const clip = `rect(0px 10px 500px 10px)`
 
 
 
-// function start(){	
+function start(){	
 	
-// 	tl.add(frame1())
-// 	tl.add(beamsPlay())
-// 	tl.add(frame2(), '-=.5')
+	tl.add(frame1())
+	tl.add('endBeam1', "-=.2")
+	tl.add( cascade(".beam_aa", 0), "endBeam1" )
+	tl.add( cascade(".beam_bb", 0), "endBeam1+=.3" )
+	tl.add(frame2(), '-=.5')
 
-// 	tl.add('endBeam', "-=.6")
-// 	tl.add( cascade_on(".beam_a"), "endBeam" )
-// 	tl.add( cascade_on(".beam_b"), "endBeam+=.3" )
-// 	// tl.to(".frame2", .3, {opacity:0})
+	tl.add('endBeam2', "-=.6")	
+	tl.add( cascade(".beam_aa", 0), "endBeam2" )
+	tl.add( cascade(".beam_bb", 0), "endBeam2+=.3" )
 	
-// }
 
-// function beamsPlay(){
-// 	const tlF2 = new TimelineMax()
-// 	tl.set('.frame2', {opacity:1})	
-// 	tlF2.add( cascade(".beam_a", 0) )
-// 	tlF2.add( cascade(".beam_b", 0), .5 )	
-// 	return tlF2	
-// }
+	tl.add('endBeam3')	
+	tl.add( cascade_on(".beam_aa", 0), "endBeam3" )
+	tl.add( cascade_on(".beam_bb", 0), "endBeam3+=.3" )
 
 
+	// tl.to(".frame2", .3, {opacity:0})
+	
+}
 
 function beamsPlay(){
 	const tlF2 = new TimelineMax()
-	// tl.set('.frame2', {opacity:1})	
-	tlF2.add( cascade(".beam_aa", 1) )
-	tlF2.add( cascade(".beam_bb", 1), .5 )	
+	tl.set('.frame2', {opacity:1})	
+	tlF2.add( cascade(".beam_aa", 0) )
+	tlF2.add( cascade(".beam_bb", 0), .5 )	
 	return tlF2	
 }
 
 
 
-function start(){	
-	// beamsPlay()
-	const tl = new TimelineMax()
-	tl.add(frame1())
-	tl.add(frame2())
-	// tl.add( beamsPlay() )
-	
-	tl.add( "beam1", "-=.6" )	
-	tl.add( cascade(".beam_aa", 0), "beam1" )		
-	tl.add( cascade(".beam_bb", 0), "beam1+=.3" )		
+// function start(){	
+// 	// beamsPlay()
+// 	const tl = new TimelineMax()
 
-	tl.add( "beam2", "-=.3" )	
-	tl.add( cascade_on(".beam_aa", 1), "beam2" )	
-	tl.add( cascade_on(".beam_bb", 1), "beam2+=.3" )		
-}
+// 	tl.set('.beam_aa', {opacity:1})
+// 	tl.set('.beam_bb', {opacity:0})
+
+
+// 	tl.add(frame1())
+// 	tl.add( cascade_on(".beam_bb") )	
+
+// 	tl.add( cascade_off(".beam_bb") )	
+
+
+// 	tl.add(frame2())
+// 	tl.add( cascade_on(".beam_bb") )	
+	
+	
+
+// 	// tl.add( cascade(".beam_aa", 4) )
+// 	// tl.add( cascade(".beam_bb", 4), .3 )	
+
+	
+
+
+	
+// }
 
 
 function frame1(){
